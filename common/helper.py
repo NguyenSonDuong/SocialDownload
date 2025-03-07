@@ -113,3 +113,9 @@ def getTotalVideoChannel(self,url):
     except Exception as ex:
         return -1
     
+from pathlib import Path
+
+def checkDirAndCreate(path):
+    path = Path(path)  # Chuyển thành đối tượng Path
+    path.mkdir(parents=True, exist_ok=True)  # Tạo thư mục nếu chưa tồn tại
+    print(f"Checked directory: {path}")

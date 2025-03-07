@@ -8,14 +8,14 @@ from config import config
 from youtube.video import Video
 from config.setting import TypeID
 from common.status import Status
-
+from common.globalstate import GlobalState
 
 class Youtube:
     _process = None
     def __init__(self, process, setting):
         self._process = process
         self.setting = setting
-        self.isRun = True
+        self.status = GlobalState()
 
     def GetListVideoYoutube(self ,nextpagetoken):
         try:
@@ -44,7 +44,7 @@ class Youtube:
             
             filtered_videos = []
             for item in data.get("items", []):
-                if not self.isRun:
+                if not self.status.get_value():
                     break
                 video = Video(
                     video_id = item["id"]["videoId"],
@@ -69,18 +69,19 @@ class Youtube:
     def GetAllVideoChannel(self):
         infos = []
         nexttoken = ""
-        while self.isRun:
+        while self.status.get_value():
             videos, nexttoken = self.GetListVideoYoutube(nexttoken)
             infos.extend(videos)
             if self.setting.count > 0:
                 if len(infos) >= self.setting.count:
                     break
             time.sleep(random.randint(0,2))
-            if not self.isRun:
+            if not self.status.get_value():
                 break
             if not nexttoken:
                 break
         return infos
+    
     def getListShort(self):
         options = {
             'quiet': True,
@@ -96,6 +97,7 @@ class Youtube:
                     kind = "")
             videos.append(video)
         return videos
+    
     def download_video(self, video):
         ydl_opts = {
             'format': self.setting.type_download,  
@@ -110,6 +112,7 @@ class Youtube:
                 return True
             except Exception as ex:
                 return False      
+            
     def _download_hook(self,d):
         try:
             if d['status'] == 'downloading':
@@ -131,19 +134,20 @@ class Youtube:
                 if self.setting.type_id == TypeID.CHANNEL_VIDEO:
                     videos = self.GetAllVideoChannel()
                     if len(videos) <=0:
-                        raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block vui lòng thửu lại")
+                        raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block, hoặc bạn không nhập đúng định dạng link vui lòng thửu lại")
                     
                 elif self.setting.type_id == TypeID.CHANNEL_SHORT:
                     videos = self.getListShort()
                     if len(videos) <=0:
-                        raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block vui lòng thửu lại")
+                        raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block, hoặc bạn không nhập đúng định dạng link vui lòng thửu lại")
                 success = 0
                 error = 0
                 self._process(status=Status.START_DOWNLOAD_LIST_VIDEO, success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
+                if self.setting.count>0:
+                    videos = videos[0:self.setting.count]
                 for video in videos:
-                    if self.setting.count>0:
-                        if  (success+error)>=self.setting.count:
-                            break
+                    if not self.status.get_value():
+                        break
                     self._process(status=Status.START_DOWNLOAD_ONE_VIDEO, success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
                     status = self.download_video(video=video)
                     if status:

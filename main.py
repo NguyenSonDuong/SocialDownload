@@ -1,26 +1,18 @@
-from youtube.youtube import Youtube as yt
-from config.setting import Setting, TypeDownloadYoutube, TypeID,Social
-import common.helper as helper
+import sys
+import os
+from PyQt5.QtWidgets import QApplication
 
-def process(status, **kwargs):
-    print("Chạy vô đây:")
-    print(kwargs)
+from home import Ui_HomeWindow
 
-url = input("Nhập link cần tải: ")
-id = helper.GetID(Social.YOUTUBE, TypeID.CHANNEL_VIDEO, url)
-if not id:
-    print("Lỗi không lấy được ID")
-else:
-    download_folder = input("Nhập đường dẫn thư mục để lưu: ")
+import logging
 
-    setting  = Setting(
-        social=Social.YOUTUBE,
-        type_id=TypeID.CHANNEL_VIDEO,
-        download_folder=download_folder,
-        id=id,
-        count=10
-    )
-    youtube = yt(process=process,setting=setting)
-    youtube.run()
+logging.basicConfig(filename="error.log", level=logging.ERROR)
 
-
+if __name__ == "__main__":
+    try:
+        app = QApplication(sys.argv)
+        home = Ui_HomeWindow()
+        sys.exit(app.exec_())
+    except Exception as e:
+        logging.error(e)
+        sys.exit(1)
