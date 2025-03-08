@@ -1,9 +1,9 @@
 
 class Status:
-    GET_INFOR = 0
-    START_GET_INFO = 1
-    DONE_GET_INFO = 2
-    START_DOWNLOAD_ONE_VIDEO = 3
-    DONE_DOWNLOAD_ONE_VIDEO = 4
-    START_DOWNLOAD_LIST_VIDEO = 5
-    DONE_DOWNLOAD_LIST_VIDEO = 6
+    GET_INFOR = "get_info"
+    START_GET_INFO = "start_get_info"
+    DONE_GET_INFO = "done_get_info"
+    START_DOWNLOAD_ONE_VIDEO = "start_download_one_video"
+    DONE_DOWNLOAD_ONE_VIDEO = "done_download_one_video"
+    START_DOWNLOAD_LIST_VIDEO = "start_download"
+    DONE_DOWNLOAD_LIST_VIDEO = "done_download_list_video"

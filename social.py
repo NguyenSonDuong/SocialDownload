@@ -1,7 +1,7 @@
-from youtube.youtube import Youtube as yt
-from config.setting import Setting, TypeDownloadYoutube, TypeID,Social
 import common.helper as helper
 from PyQt5.QtCore import QThread, pyqtSignal
+from config.setting import Setting, TypeDownloadYoutube, TypeID,Social
+from youtube.youtube import Youtube as yt
 from douyin.douyin import Douyin as dy
 
 class SocialThread(QThread):
