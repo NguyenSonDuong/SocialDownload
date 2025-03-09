@@ -65,7 +65,7 @@ class Youtube:
             else:
                 return filtered_videos, None
         except Exception as ex:
-            self._processError(str(ex), ["Youtube","GetInfoChannel"])  
+            self._process("Doyin",{"error":ex})
     def GetAllVideoChannel(self):
         infos = []
         nexttoken = ""
@@ -88,7 +88,7 @@ class Youtube:
             'extract_flat': False,  # Lấy thông tin chi tiết từng video
         }
         with yt_dlp.YoutubeDL(options) as ydl:
-            info = ydl.extract_info(f"http/www.youtube.com/channel/{self.setting.id}", download=False)  # Lấy dữ liệu từ kênh 
+            info = ydl.extract_info(f"https://www.youtube.com/channel/{self.setting.id}", download=False)  # Lấy dữ liệu từ kênh 
         videos = []
         for item in info["entries"]:
             video = Video(
@@ -124,7 +124,7 @@ class Youtube:
                 downloaded = 0.0
                 total = 0.0
         except Exception as ex:
-            self._processError(str(ex), ["Youtube","_download_hook"])
+            self._process("Doyin",{"error":ex})
 
 
     def run(self):
@@ -142,21 +142,21 @@ class Youtube:
                         raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block, hoặc bạn không nhập đúng định dạng link vui lòng thửu lại")
                 success = 0
                 error = 0
-                self._process(status=Status.START_DOWNLOAD_LIST_VIDEO, success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
+                
                 if self.setting.count>0:
                     videos = videos[0:self.setting.count]
                 for video in videos:
                     if not self.status.get_value():
                         break
-                    self._process(status=Status.START_DOWNLOAD_ONE_VIDEO, success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
+                    
                     status = self.download_video(video=video)
                     if status:
                         success = success+1
-                        self._process(status=Status.DONE_DOWNLOAD_ONE_VIDEO, success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
+                        
                     else:
                         error = error +1
-                        self._process(status=Status.DONE_DOWNLOAD_ONE_VIDEO, video_error = video ,success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
-                self._process(status=Status.DONE_DOWNLOAD_LIST_VIDEO, success_video = success, error_video = error, quantity_video = self.setting.count if self.setting.count >0 else len(videos))
+                        
+                
 
             elif self.setting.type_id == TypeID.VIDEO or self.setting.type_id == TypeID.SHORT:
                 video = Video(
@@ -165,10 +165,11 @@ class Youtube:
                     kind = "")
                 status = self.download_video(video)
                 if status:
-                    self._process(status=Status.DONE_DOWNLOAD_ONE_VIDEO, success_video = 1, error_video = 0, quantity_video = 1)
+                    self._process("Doyin",{"error":ex})
                 else:
-                    self._process(status=Status.DONE_DOWNLOAD_ONE_VIDEO, video_error = video ,success_video = 0, error_video = 1, quantity_video = 1)
+                    self._process("Doyin",{"error":ex})
         except Exception as ex:
+            self._process("Doyin",{"error":ex})
             raise ex
         
 

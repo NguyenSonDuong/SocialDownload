@@ -22,12 +22,18 @@ def download():
     return jsonify({"message": "Kết nối thành công vui lòng chờ...."})
 
 def download_video(setting):
-    if setting.social == Social.DOUYIN:
-        socketio.emit("progress", {"progress": "Completed"}) 
-    if setting.social == Social.YOUTUBE:
-        socketio.emit("progress", {"progress": "Completed"}) 
-    if setting.social == Social.WEIBO:
-        socketio.emit("progress", {"progress": "Completed"}) 
+    try:
+        socketio.emit("progress", {"status": "Start"})
+        if setting.social == Social.DOUYIN:
+            douyin = dy(socketio.emit,setting)
+            douyin.run()
+        if setting.social == Social.YOUTUBE:
+            youtube = yt(socketio.emit,setting)
+            youtube.run()
+        if setting.social == Social.WEIBO:
+            socketio.emit("progress", {"status": "update"})
+    except Exception as ex:
+        print(ex)
 
 if __name__ == "__main__":
     socketio.run(app, port=5000, debug=True)

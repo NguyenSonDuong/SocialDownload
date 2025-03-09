@@ -34,6 +34,7 @@ class Setting:
     download_folder: str = None
     id: str = None
     type_id: int = -1
+    order_type: int = 1
     type_download: str = None
     from_date: datetime = None
     to_date: datetime = None

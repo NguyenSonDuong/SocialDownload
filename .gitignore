@@ -1,0 +1,8 @@
+﻿logs
+error.log
+common/__pycache__
+config/__pycache__
+douyin/__pycache__
+ui/__pycache__
+ui/controller/__pycache__
+youtube/__pycache__
