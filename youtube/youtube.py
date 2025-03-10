@@ -65,7 +65,7 @@ class Youtube:
             else:
                 return filtered_videos, None
         except Exception as ex:
-            self._process("Doyin",{"error":ex})
+            raise ex
     def GetAllVideoChannel(self):
         infos = []
         nexttoken = ""
@@ -124,8 +124,8 @@ class Youtube:
                 downloaded = 0.0
                 total = 0.0
         except Exception as ex:
-            self._process("Doyin",{"error":ex})
-
+            raise ex
+ 
 
     def run(self):
         try:
@@ -165,11 +165,11 @@ class Youtube:
                     kind = "")
                 status = self.download_video(video)
                 if status:
-                    self._process("Doyin",{"error":ex})
+                    pass
                 else:
-                    self._process("Doyin",{"error":ex})
+                    raise Exception("")
         except Exception as ex:
-            self._process("Doyin",{"error":ex})
+            raise ex
             raise ex
         
 

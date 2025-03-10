@@ -17,7 +17,6 @@ def download():
          return jsonify({"error": "No URL provided"}), 400
     setting = Setting(**data)
 
-
     socketio.start_background_task(download_video, setting)
     return jsonify({"message": "Kết nối thành công vui lòng chờ...."})
 

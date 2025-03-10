@@ -771,9 +771,9 @@ color: black;
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-658</y>
+              <y>-77</y>
               <width>1081</width>
-              <height>3090</height>
+              <height>3211</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -839,26 +839,7 @@ background-color: rgb(255, 255, 255);
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout">
                      <item>
-                      <widget class="QLabel" name="label_39">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="pixmap">
-                        <pixmap>img/TikTok.png</pixmap>
-                       </property>
-                       <property name="scaledContents">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLabel" name="label_40">
+                      <widget class="QLabel" name="lbLogoSocial">
                        <property name="font">
                         <font>
                          <pointsize>25</pointsize>
@@ -876,7 +857,7 @@ background-color: rgb(255, 255, 255);
                         <enum>Qt::AutoText</enum>
                        </property>
                        <property name="pixmap">
-                        <pixmap>img/Douyin.png</pixmap>
+                        <pixmap>img/DouyinChar.png</pixmap>
                        </property>
                        <property name="scaledContents">
                         <bool>false</bool>
@@ -964,7 +945,7 @@ background-color: rgb(255, 255, 255);
                         </widget>
                        </item>
                        <item alignment="Qt::AlignLeft">
-                        <widget class="QWidget" name="" native="true">
+                        <widget class="QWidget" name="widget" native="true">
                          <layout class="QHBoxLayout" name="selectVideoH">
                           <item>
                            <widget class="QRadioButton" name="rdDownloadFromLink">
@@ -1025,6 +1006,9 @@ background-color: rgb(255, 255, 255);
                           </item>
                           <item>
                            <widget class="QRadioButton" name="rdError">
+                            <property name="enabled">
+                             <bool>false</bool>
+                            </property>
                             <property name="sizePolicy">
                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                               <horstretch>0</horstretch>
@@ -1171,7 +1155,7 @@ background-color: rgb(255, 255, 255);
                          </widget>
                         </item>
                         <item alignment="Qt::AlignLeft">
-                         <widget class="QWidget" name="" native="true">
+                         <widget class="QWidget" name="widget" native="true">
                           <layout class="QHBoxLayout" name="selectSortLayout1">
                            <item>
                             <widget class="QRadioButton" name="rdDownloadNewVideo">
@@ -1231,7 +1215,7 @@ background-color: rgb(255, 255, 255);
                          </widget>
                         </item>
                         <item alignment="Qt::AlignLeft">
-                         <widget class="QWidget" name="" native="true">
+                         <widget class="QWidget" name="widget" native="true">
                           <layout class="QHBoxLayout" name="selectSortLayout2">
                            <item>
                             <widget class="QRadioButton" name="rdDownloadDate">
@@ -1296,7 +1280,7 @@ background-color: rgb(255, 255, 255);
                               </sizepolicy>
                              </property>
                              <property name="placeholderText">
-                              <string>100</string>
+                              <string>Chọn ngày bắt đầu</string>
                              </property>
                             </widget>
                            </item>
@@ -1309,7 +1293,7 @@ background-color: rgb(255, 255, 255);
                               </sizepolicy>
                              </property>
                              <property name="placeholderText">
-                              <string>100</string>
+                              <string>Chọn ngày kết thúc</string>
                              </property>
                             </widget>
                            </item>
@@ -1364,50 +1348,39 @@ background-color: rgb(255, 255, 255);
                          </widget>
                         </item>
                         <item alignment="Qt::AlignLeft">
-                         <widget class="QWidget" name="" native="true">
+                         <widget class="QWidget" name="widget" native="true">
                           <layout class="QHBoxLayout" name="numberDownloadLayout">
-                           <item>
-                            <widget class="QLineEdit" name="txtQuatityDownload">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="placeholderText">
-                              <string>100</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item>
-                            <widget class="QLabel" name="label_3">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="font">
-                              <font>
-                               <pointsize>10</pointsize>
-                              </font>
-                             </property>
-                             <property name="text">
-                              <string>Nhập số lượng muốn tải</string>
-                             </property>
-                            </widget>
-                           </item>
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
                            <item>
                             <widget class="QCheckBox" name="rdDownloadAllVideo">
                              <property name="sizePolicy">
-                              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                                <horstretch>0</horstretch>
                                <verstretch>0</verstretch>
                               </sizepolicy>
                              </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>300</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>300</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
                              <property name="styleSheet">
                               <string notr="true">QCheckBox {
-                font-size: 13px; /* Kích thước chữ */
+                font-size: 15px; /* Kích thước chữ */
                 spacing: 10px; /* Khoảng cách giữa checkbox và chữ */
 margin: 0px 0px 0px 20px
             }
@@ -1431,6 +1404,37 @@ margin: 0px 0px 0px 20px
                              </property>
                             </widget>
                            </item>
+                           <item>
+                            <widget class="QLabel" name="lbQuantityDownload">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>9</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Nhập số lượng muốn tải</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="txtQuatityDownload">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Nhập số lượng</string>
+                             </property>
+                            </widget>
+                           </item>
                           </layout>
                          </widget>
                         </item>
@@ -1438,7 +1442,7 @@ margin: 0px 0px 0px 20px
                       </widget>
                      </item>
                      <item alignment="Qt::AlignLeft">
-                      <widget class="QWidget" name="" native="true">
+                      <widget class="QWidget" name="widget" native="true">
                        <layout class="QVBoxLayout" name="verticalLayout_9">
                         <property name="topMargin">
                          <number>1</number>
@@ -1660,7 +1664,7 @@ QPushButton:pressed {
                            </widget>
                           </item>
                           <item alignment="Qt::AlignLeft">
-                           <widget class="QWidget" name="" native="true">
+                           <widget class="QWidget" name="widget" native="true">
                             <layout class="QHBoxLayout" name="selectFrame">
                              <item>
                               <widget class="QRadioButton" name="rdFrameNoChange">
@@ -2643,7 +2647,7 @@ QPushButton:pressed {
                     </widget>
                    </item>
                    <item alignment="Qt::AlignLeft">
-                    <widget class="QWidget" name="" native="true">
+                    <widget class="QWidget" name="widget" native="true">
                      <layout class="QHBoxLayout" name="editColorBasicLayout">
                       <item>
                        <widget class="QLineEdit" name="txtOpacity">
@@ -2826,23 +2830,6 @@ QPushButton:pressed {
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="lbErrorBaseColor">
-                     <property name="font">
-                      <font>
-                       <pointsize>9</pointsize>
-                       <weight>75</weight>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(255, 0, 0);</string>
-                     </property>
-                     <property name="text">
-                      <string>Vui lòng nhập đúng định dạng số</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
                     <widget class="QLabel" name="label_88">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2869,7 +2856,7 @@ QPushButton:pressed {
                     </widget>
                    </item>
                    <item alignment="Qt::AlignLeft">
-                    <widget class="QWidget" name="" native="true">
+                    <widget class="QWidget" name="widget" native="true">
                      <layout class="QHBoxLayout" name="editColorAdvancedLayout">
                       <item>
                        <widget class="QLineEdit" name="txtSatuation">
@@ -2990,25 +2977,8 @@ QPushButton:pressed {
                      </layout>
                     </widget>
                    </item>
-                   <item>
-                    <widget class="QLabel" name="lbErrorAdvColor">
-                     <property name="font">
-                      <font>
-                       <pointsize>9</pointsize>
-                       <weight>75</weight>
-                       <bold>true</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(255, 0, 0);</string>
-                     </property>
-                     <property name="text">
-                      <string>Vui lòng nhập đúng định dạng số</string>
-                     </property>
-                    </widget>
-                   </item>
                    <item alignment="Qt::AlignRight">
-                    <widget class="QWidget" name="" native="true">
+                    <widget class="QWidget" name="widget" native="true">
                      <layout class="QHBoxLayout" name="editColorSaveResetLayout">
                       <property name="topMargin">
                        <number>10</number>
