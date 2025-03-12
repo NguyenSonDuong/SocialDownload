@@ -771,7 +771,7 @@ color: black;
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-77</y>
+              <y>0</y>
               <width>1081</width>
               <height>3211</height>
              </rect>
@@ -1172,6 +1172,9 @@ background-color: rgb(255, 255, 255);
                              </property>
                              <property name="text">
                               <string>Tải video mới nhất</string>
+                             </property>
+                             <property name="checked">
+                              <bool>true</bool>
                              </property>
                             </widget>
                            </item>

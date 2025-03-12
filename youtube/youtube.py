@@ -6,10 +6,10 @@ import yt_dlp
 from dotenv import load_dotenv
 from config import config
 from youtube.video import Video
-from config.setting import TypeID
+from config.setting import TypeID, TypeChannel
 from common.status import Status
 from common.globalstate import GlobalState
-
+from common.status import Status
 class Youtube:
     _process = None
     def __init__(self, process, setting):
@@ -23,7 +23,6 @@ class Youtube:
                 raise Exception("Channel ID youtube bị trống vui lòng thêm channel id")
 
             base_url = config.BASE_YOUTUBE_URL
-
             params = {
                 "part": "snippet",
                 "channelId": self.setting.id,
@@ -43,6 +42,7 @@ class Youtube:
                 raise Exception(f"Lỗi tải dữ liệu! kiểm tra lại kết nối Internet: {ex}")
             
             filtered_videos = []
+            
             for item in data.get("items", []):
                 if not self.status.get_value():
                     break
@@ -57,7 +57,10 @@ class Youtube:
                         filtered_videos.append(video)
                 else:
                     filtered_videos.append(video)
-
+            self._process(Status.START_GET_INFO,{
+                "status":"0",
+                "message":f"Đã lấy được {len(filtered_videos)} thành công"
+            })
             nextpagetoken = data.get("nextPageToken")
 
             if nextpagetoken:
@@ -69,6 +72,10 @@ class Youtube:
     def GetAllVideoChannel(self):
         infos = []
         nexttoken = ""
+        self._process(Status.START_GET_INFO,{
+            "status":"0",
+            "message":"Bắt đầu quá trình lấy thông tin channel"
+        })
         while self.status.get_value():
             videos, nexttoken = self.GetListVideoYoutube(nexttoken)
             infos.extend(videos)
@@ -120,26 +127,31 @@ class Youtube:
                     percent = float(d['downloaded_bytes']/d["total_bytes_estimate"])*100  
                 else:
                     percent = float(d['downloaded_bytes']/d["total_bytes"])*100  
-                speed = 0.0 
-                downloaded = 0.0
-                total = 0.0
+                self._process(Status.PROCESS_DOWNLOAD_VIDEO,{
+                    "status":"0",
+                    "message": {
+                        "status":"downloading",
+                        "percent": percent
+                    }
+                })
         except Exception as ex:
             raise ex
  
 
     def run(self):
         try:
-            if self.setting.type_id == TypeID.CHANNEL_VIDEO or self.setting.type_id == TypeID.CHANNEL_SHORT:
+            if self.setting.type_id == TypeID.CHANNEL :
                 videos = []
-                if self.setting.type_id == TypeID.CHANNEL_VIDEO:
+                if self.setting.type_channel == TypeChannel.VIDEO:
                     videos = self.GetAllVideoChannel()
                     if len(videos) <=0:
                         raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block, hoặc bạn không nhập đúng định dạng link vui lòng thửu lại")
                     
-                elif self.setting.type_id == TypeID.CHANNEL_SHORT:
+                elif self.setting.type_id == TypeChannel.SHORT:
                     videos = self.getListShort()
                     if len(videos) <=0:
                         raise Exception("Không tìm thấy video, lỗi này có thể do trong quá trình crawl data bị block, hoặc bạn không nhập đúng định dạng link vui lòng thửu lại")
+                    
                 success = 0
                 error = 0
                 
@@ -152,24 +164,36 @@ class Youtube:
                     status = self.download_video(video=video)
                     if status:
                         success = success+1
-                        
                     else:
                         error = error +1
-                        
-                
-
-            elif self.setting.type_id == TypeID.VIDEO or self.setting.type_id == TypeID.SHORT:
+                    self._process(Status.DONE_DOWNLOAD_LIST_VIDEO,{
+                        "status":"0",
+                        "message":{
+                            "status":"downloading",
+                            "success": success,
+                            "error":error,
+                            "total":len(videos)
+                        }
+                    })
+                self._process(Status.DONE_DOWNLOAD_LIST_VIDEO,{
+                    "status":"0",
+                    "message":"Đã tải được toàn bộ video"
+                })
+            elif self.setting.type_id == TypeID.LINK:
                 video = Video(
                     video_id = self.setting.id,
                     title = "",
                     kind = "")
                 status = self.download_video(video)
                 if status:
+                    self._process(Status.DONE_DOWNLOAD_ONE_VIDEO,{
+                        "status":"0",
+                        "message":"Đã tải được video"
+                    })
                     pass
                 else:
                     raise Exception("")
         except Exception as ex:
-            raise ex
             raise ex
         
 

@@ -75,7 +75,7 @@ class Douyin:
             } | ConfigManager(config.SOCIAL_CONFIG).get_config(config.KEY_SOCIAL)
 
             video = await DouyinHandler(kwargs).fetch_one_video(aweme_id=self.setting.id)
-            video._to_dict()
+            return video._to_dict()
         except Exception as ex:
             raise ex
 
@@ -99,15 +99,16 @@ class Douyin:
     def run(self):
         try:
             videos = []
-            if self.setting.type_id == TypeID.DOUYIN_USER:
-                videos = self.getListDouyinVideoFromUser()
-            if self.setting.type_id == TypeID.DOUYIN_LINK:
-                videos.append(self.getInfoDouyinVideo())
+            if self.setting.type_id == TypeID.CHANNEL:
+                videos = asyncio.run(self.getListDouyinVideoFromUser())
+            if self.setting.type_id == TypeID.LINK:
+                video = asyncio.run(self.getInfoDouyinVideo())
+                videos.append(video)
             
-            if len(videos) <=0:
+            if len(videos) <=0 or videos[0] == None:
                 raise Exception("Không lấy được video nào vui lòng kiểm tra lại đường dẫn!")
             if self.status.get_value():
-                self.downloadVideo(videos)
+                asyncio.run(self.downloadVideo(videos))
 
         except Exception as ex:
             raise ex

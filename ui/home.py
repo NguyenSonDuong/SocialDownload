@@ -8,7 +8,15 @@ from PyQt5.QtCore import QThread, pyqtSignal
 from datetime import datetime, timedelta
 import ctypes
 import ui.controller.uicontroller as controller
-from config.setting import Setting, OrderType, Social
+from config.setting import Setting, OrderType, Social, TypeID, TypeChannel, TypeDownloadDoyin, TypeDownloadYoutube
+import json
+from datetime import datetime, timedelta
+from social import SocialThread
+from common.globalstate import GlobalState
+from common.status import Status
+import os
+from ui.dialog import DialogOverlay
+
 class Ui_HomeWindow(QMainWindow):
 
     _isClick = None
@@ -17,18 +25,113 @@ class Ui_HomeWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("ui/home.ui",self)
+        self.dialogProcess = DialogOverlay(self)
         self.setAndRun()
+        self.dialogProcess.hide_overlay()
+        self.dialogProcess.setOverlayGeometry(self.centralwidget) 
 
     
     # XỬ lý sự kiện click nút RUN
     
+    def validateInputSetting(self):
+        url = self.txtUrl.text()
+        if not url or url == "":
+            QMessageBox.information(self,"Cảnh báo","Vui lòng nhập url")
+            return False
+        if self._setting.social != Social.DOUYIN and not self.rdDownloadFromLink.isChecked():
+            if not controller.validateUrl(url):
+                QMessageBox.information(self,"Cảnh báo","Hãy nhập đúng định dạng url")
+                return False
+        if self.rdFullChannel.isChecked():
+            if self.rdCustomTime.isChecked():
+                if not self.txtFromDate or not self.txtToDate:
+                    QMessageBox.information(self,"Cảnh báo","Hãy nhập đầy đủ ngày bắt đầu và kết thúc")
+                    return False
+                if not controller.validateDate(self.txtFromDate.text()) or not controller.validateDate(self.txtToDate.text()):
+                    QMessageBox.information(self,"Cảnh báo","Hãy nhập đúng định dạng ngày tháng có bao gồm cả số 0")
+                    return False
+            if not self.rdDownloadAllVideo.isChecked():
+                if not self.txtQuatityDownload.text() or self.txtQuatityDownload.text() == "":
+                    QMessageBox.information(self,"Cảnh báo","Hãy nhập số lượng muốn tải nếu muốn tải hết vui lòng click vào ô tải toàn bộ")
+                    return False
+                if not self.txtQuatityDownload.text().isdigit():
+                    QMessageBox.information(self,"Cảnh báo","Hãy nhập đúng định dạng cảu số lượng video")
+                    return False
+                
+        if not self.txtFolderSaveVideo.text() or self.txtFolderSaveVideo.text() == "":
+            QMessageBox.information(self,"Cảnh báo","Hãy nhập hoặc chọn đường dẫn")
+            return False
+        return True
+
+    def setupValueSetting(self):
+        
+        if self._setting.social == Social.YOUTUBE:
+            self._setting.id = controller.validateUrlYoutube(self.txtUrl.text(),self._setting)
+        else:
+            self._setting.id = controller.validateUrlDouyin(self.txtUrl.text(),self._setting)
+            
+        if not self._setting.id or self._setting.id == "":
+            QMessageBox.information(self,"Cảnh báo","Sai định dạng link vui lòng kiểm tra mạng xã hội và cách tải")
+            raise ValueError("Sai định dạng link vui lòng kiểm tra mạng xã hội và cách tải");
+        
+        if self._setting.social == Social.DOUYIN:
+            self._setting.type_download = TypeDownloadDoyin.ALL
+        else:
+            self._setting.type_download = TypeDownloadYoutube.VIDEO_HIGHTQUATITY
+        
+        if self.rdCustomTime.isChecked():
+            self._setting.from_date = datetime.strptime(self.txtFromDate.text(), "%d/%m/%Y") 
+            self._setting.to_date = datetime.strptime(self.txtToDate.text(), "%d/%m/%Y") 
+        elif self.rdDownloadWeek.isChecked():
+            self._setting.from_date = datetime.now() - timedelta(days=7)
+            self._setting.to_date = datetime.now()
+        elif self.rdDownloadDate.isChecked():
+            self._setting.from_date = datetime.now() - timedelta(days=1)
+            self._setting.to_date = datetime.now()
+        else:
+            self._setting.from_date = None
+            self._setting.to_date = None
+        if self.rdFullChannel.isChecked():
+            if self.rdDownloadAllVideo.isChecked():
+                self._setting.count = -1
+            else:
+                self._setting.count = int(self.txtQuatityDownload.text())
+            
+        self._setting.download_folder = self.txtFolderSaveVideo.text()
+
+        
+    
+    def processDownload(self,status, message):
+        if status == Status.PROCESS_DOWNLOAD_VIDEO:
+            print(message)
+        if status == Status.START_GET_INFO:
+            print(message)
+        if status == Status.START_DOWNLOAD_ONE_VIDEO:
+            print(message)
+        if status == Status.START_DOWNLOAD_LIST_VIDEO:
+            print(message)
+        if status == Status.DONE_DOWNLOAD_LIST_VIDEO:
+            print(message)
+        if status == Status.DONE_DOWNLOAD_ONE_VIDEO:
+            print(message)
+        if status == Status.DONE_GET_INFO:
+            print(message)
     def setupButtonRunClick(self):
-
-
-
         self.btnRun.clicked.connect(self.onRunClick)
 
     def onRunClick(self,event):
+        self.dialogProcess.show_overlay()
+        # if not self.validateInputSetting():
+        #     return
+        # try:
+        #     self.setupValueSetting()
+        # except:
+        #     return
+        # os.makedirs(self._setting.download_folder, exist_ok=True)
+        # socialThread = SocialThread(self._setting)
+        # socialThread.process.connect(self.processDownload)
+        # socialThread.start()
+        
         print("click")
 
     # xử lý Group radiobutom
@@ -60,7 +163,7 @@ class Ui_HomeWindow(QMainWindow):
     def onSelectTypeDownload(self, button):
         button_id = self.groupTypeID.id(button)  
         self._setting.type_id = button_id
-        print(f"Button clicked: {button.text()}, ID: {button_id}")
+        self.loadUiSetting()
 
     def onSelectOrder(self, button):
         button_id = self.groupOrder.id(button)  
@@ -78,7 +181,6 @@ class Ui_HomeWindow(QMainWindow):
         self._setting.type_channel = button_id
         print(f"Button clicked: {button.text()}, ID: {button_id}")
 
-
     # Xử lý nhập thư mục lưu file
     def setupFolderSelect(self):
         self.btnSelectFolder.clicked.connect(self.onBtnSelectFolderClick)
@@ -88,7 +190,6 @@ class Ui_HomeWindow(QMainWindow):
         
         if folder_path:  # Nếu người dùng chọn thư mục
             self.txtFolderSaveVideo.setText(f"{folder_path}")
-
     # Xử lý nhập số lượng tải
 
     def setupCountDownload(self):
@@ -98,7 +199,6 @@ class Ui_HomeWindow(QMainWindow):
         if state == 2:  # Qt.Checked
             self.lbQuantityDownload.hide()
             self.txtQuatityDownload.hide()
-            
         else:  # Qt.Unchecked
             self.lbQuantityDownload.show()
             self.txtQuatityDownload.show()
@@ -162,7 +262,7 @@ class Ui_HomeWindow(QMainWindow):
     def eventFilter(self, obj, event):
         self.socialSelectEvent(obj,event)
         self.showAndHideSelectDatetimePicker(obj,event)
-
+        self.loadUiSetting()
         return super().eventFilter(obj, event)
     
     # Xử lý sự kiện chuyển Social
@@ -199,17 +299,16 @@ class Ui_HomeWindow(QMainWindow):
     def swichSocial(self):
         if self._isClick == self.btnDouyin:
             self._setting.social = Social.DOUYIN
-            pixmap = QPixmap("ui/img/DouyinChar.png")  # Đường dẫn ảnh
+            pixmap = QPixmap("ui/img/DouyinChar.png") 
             self.lbLogoSocial.setPixmap(pixmap)
-
             self.txtUrl.setPlaceholderText("https://www.douyin.com/user/...")
             self.rdDownloadOld.setEnabled(False)
             self.rdDownloadOld.setChecked(False)
+            
         if self._isClick == self.btnYoutube:
             self._setting.social = Social.YOUTUBE
-            pixmap = QPixmap("ui/img/YoutubeChart.png")  # Đường dẫn ảnh
+            pixmap = QPixmap("ui/img/YoutubeChart.png") 
             self.lbLogoSocial.setPixmap(pixmap)
-
             self.txtUrl.setPlaceholderText("https://www.youtube.com/...")
             self.rdDownloadOld.setEnabled(True)
 
@@ -240,7 +339,24 @@ class Ui_HomeWindow(QMainWindow):
     def adjustSizeToScreen(self):
         self.resize(1450, 865)  
 
-
+    def loadUiSetting(self):
+        if self._setting.social == Social.DOUYIN:
+            self.layouYoutubeType.hide()
+            if self.rdDownloadFromLink.isChecked():
+                self.layoutOrder.hide()
+                self.lauoutQuantity.hide()
+            else:
+                self.layoutOrder.show()
+                self.lauoutQuantity.show()
+        else:
+            self.layouYoutubeType.show()
+            if self.rdDownloadFromLink.isChecked():
+                self.layoutOrder.hide()
+                self.lauoutQuantity.hide()
+            else:
+                self.layoutOrder.show()
+                self.lauoutQuantity.show()
+            
 
     def setAndRun(self):
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -251,8 +367,12 @@ class Ui_HomeWindow(QMainWindow):
         self.setupCalendar()
         self.setupCountDownload()
         self.setupFolderSelect()
+        self.setupButtonRunClick()
         controller.setShadows(self,self.btnDouyin)
-
-
         self._isClick = self.btnDouyin
+        self._setting.social = Social.DOUYIN
+        self._setting.type_id = TypeID.LINK
+        self._setting.type_channel = TypeChannel.VIDEO
+        self._setting.order_type = OrderType.NEW
+        self.loadUiSetting()
         self.show()

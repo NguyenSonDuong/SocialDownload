@@ -2,8 +2,9 @@ from dataclasses import dataclass
 from datetime import datetime
 
 class TypeID:
-    CHANNEL = 0
-    LINK = 1
+    LINK = 0
+    CHANNEL = 1
+    
 class TypeChannel:
     VIDEO = 0
     SHORT = 1
@@ -46,7 +47,19 @@ class Setting:
     from_date: datetime = None
     to_date: datetime = None
     count: int = -1
-
+    def __dir__(self):
+        return {
+            "social": self.social,
+            "download_folder": self.download_folder,
+            "id": self.id,
+            "type_id": self.type_id,
+            "type_channel": self.type_channel,
+            "order_type": self.order_type,
+            "type_download": self.type_download,
+            "from_date": self.from_date,
+            "to_date": self.to_date,
+            "count": self.count
+        }
     def validate(self):
         if self.social not in vars(Social).values():
             return False , "Mạng xã hội chưa được hỗ trợ"
@@ -68,6 +81,4 @@ class Setting:
         if self.social == Social.DOUYIN:
             if self.type_download not in vars(TypeDownloadDoyin).values():
                 return False, "Loại tải không hỗ trợ"
-        import common.helper as helper
-        helper.checkDirAndCreate(self.download_folder)
         return True

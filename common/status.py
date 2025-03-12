@@ -7,3 +7,7 @@ class Status:
     DONE_DOWNLOAD_ONE_VIDEO = "done_download_one_video"
     START_DOWNLOAD_LIST_VIDEO = "start_download"
     DONE_DOWNLOAD_LIST_VIDEO = "done_download_list_video"
+    PROCESS_DOWNLOAD_VIDEO = "process_download_video"
+    ERROR_GET_INFO = "error_done_get_info"
+    ERROR_DOWNLOAD_ONE_VIDEO = "error_done_download_one_video"
+    ERROR_DOWNLOAD_LIST_VIDEO = "error_start_download"

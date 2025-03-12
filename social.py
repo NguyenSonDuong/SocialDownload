@@ -5,8 +5,9 @@ from youtube.youtube import Youtube as yt
 from douyin.douyin import Douyin as dy
 
 class SocialThread(QThread):
-    process = pyqtSignal(int, dict)
+    process = pyqtSignal(str, dict)
     def __init__(self, setting):
+        super().__init__()
         self.setting = setting
     
     def RunYoutube(self):
@@ -19,13 +20,13 @@ class SocialThread(QThread):
 
     def run(self):
         if not self.setting :
-            raise Exception("Cấu hình bị lỗi vui lòng cấu hình lại")
+            raise ValueError("Cấu hình bị lỗi vui lòng cấu hình lại")
         if not self.setting.validate():
-            raise Exception("Thiếu các thông tin cần thiết vui lòng thêm các thông tin")
+            raise ValueError("Thiếu các thông tin cần thiết vui lòng thêm các thông tin")
         try:
             if self.setting.social == Social.YOUTUBE:
                 self.RunYoutube()
-            if self.setting.social == Social.YOUTUBE:
+            if self.setting.social == Social.DOUYIN:
                 self.RunDouyin()
         except Exception as ex:
-            print(ex)
+            raise ex
