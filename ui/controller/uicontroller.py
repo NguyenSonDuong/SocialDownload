@@ -121,7 +121,7 @@ def validateUserDoutin(url):
         return match.group(1)
     return None
 def validatePostlDouyin(url):
-    match = re.search(r"https://v\.douyin\.com/([a-zA-Z0-9]+)", url)
+    match = re.search(r"https://v\.douyin\.com/([a-zA-Z0-9_-]+)", url)
     return match.group(1) if match else None
 def getIDFromShortLink(id):
     response = requests.head(f"https://v.douyin.com/{id}", allow_redirects=True)

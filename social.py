@@ -20,9 +20,17 @@ class SocialThread(QThread):
 
     def run(self):
         if not self.setting :
-            raise ValueError("Cấu hình bị lỗi vui lòng cấu hình lại")
+            self.process.emit("error",{
+                "status": -1,
+                "message":"Eroor"
+            })
+            return
         if not self.setting.validate():
-            raise ValueError("Thiếu các thông tin cần thiết vui lòng thêm các thông tin")
+            self.process.emit("error", {
+                "status": -1,
+                "message": "Eroor"
+            })
+            return
         try:
             if self.setting.social == Social.YOUTUBE:
                 self.RunYoutube()

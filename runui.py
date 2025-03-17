@@ -5,14 +5,16 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'message'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'youtube'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ui'))
 from ui.home import Ui_HomeWindow
-def process(funtion_name, messgae):
-    print(f"{funtion_name}: {messgae}")
+from common.globalstate import GlobalStatePause,GlobalStateRun
+
 import logging
 
 logging.basicConfig(filename="error.log", level=logging.ERROR)
 
 if __name__ == "__main__":
     try:
+        isRun = GlobalStateRun()
+        isPause = GlobalStatePause()
         app = QApplication(sys.argv)
         home = Ui_HomeWindow()
         sys.exit(app.exec_())

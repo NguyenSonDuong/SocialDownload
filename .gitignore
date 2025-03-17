@@ -6,3 +6,7 @@ douyin/__pycache__
 ui/__pycache__
 ui/controller/__pycache__
 youtube/__pycache__
+.idea
+__pycache__
+build
+dist
