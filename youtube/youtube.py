@@ -6,7 +6,7 @@ import yt_dlp
 from dotenv import load_dotenv
 from config import config
 from youtube.video import Video
-from config.setting import TypeID, TypeChannel
+from config.setting import TypeID, TypeChannel, OrderType
 from common.status import Status
 from common.globalstate import GlobalStatePause, GlobalStateRun
 from common.status import Status
@@ -27,7 +27,7 @@ class Youtube:
             params = {
                 "part": "snippet",
                 "channelId": self.setting.id,
-                "order": "date",
+                "order": self.setting.order_type == OrderType.TRENDING if "rating" else "date",
                 "maxResults": 50,
                 "type": "video",
                 "key": config.API_KEY
@@ -123,7 +123,7 @@ class Youtube:
             "channelId": self.setting.id,
             "part": "snippet,id",
             "maxResults": 20,
-            "order": "date",
+            "order":  self.setting.order_type == OrderType.TRENDING if "rating" else "date",
             "type": "video"
         }
         

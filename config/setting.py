@@ -24,11 +24,11 @@ class Social:
     TWITTER = 3
 
 class TypeDownloadYoutube:
-    VIDEO_HIGHTQUATITY = "bestvideo[ext=mp4]+bestaudio[ext=m4a]"
-    VIDEO_BEST = "bestvideo[ext=mp4]"
-    AUDIO_BEST = "bestaudio[ext=m4a]"
-    VIDEO_WORST = "worstvideo[ext=mp4]"
-    AUDIO_WORST = "worstaudio[ext=m4a]"
+    VIDEO_HIGHTQUATITY = "bestvideo+bestaudio"
+    VIDEO_BEST = "bestvideo"
+    AUDIO_BEST = "bestaudio"
+    VIDEO_WORST = "worstvideo"
+    AUDIO_WORST = "worstaudio"
     
 class TypeDownloadDoyin:
     ALL = "all"

@@ -1,0 +1,2063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1450</width>
+    <height>869</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+
+QLineEdit {
+        border: 1px solid #C0C0C0;  /* Viền màu xám nhạt */
+        border-radius: 4px;         /* Bo tròn góc */
+        padding: 7px;               /* Thêm khoảng cách bên trong */
+        background: white;          /* Màu nền */
+        font-size: 14px;            /* Cỡ chữ */
+        color: #555555;             /* Màu chữ xám đậm */
+    }
+    QLineEdit:focus {
+        border: 1px solid #66afe9;  /* Viền xanh khi focus */
+        outline: none;
+    }
+
+/*Radio button style*/
+
+QRadioButton {
+        font-size: 14px;           /* Kích thước chữ */
+        color: #333333;            /* Màu chữ xám đậm */
+        spacing: 5px;      
+padding: 3px;        /* Khoảng cách giữa ô chọn và chữ */
+    }
+    
+    QRadioButton::indicator {
+       
+        border-radius: 3px;        /* Bo tròn góc */
+        border: 1px solid #AAAAAA; /* Viền màu xám nhạt */
+        background: white;         /* Nền trắng */
+    }
+
+    QRadioButton::indicator:checked {
+        background-color: rgba(0, 120, 215, 0.6); /* Màu xanh nhạt */
+    border: 1px solid rgb(0, 89, 158);               /* Viền xanh */
+    border-radius: 5px;                      /* Bo tròn nhẹ */
+    padding: 1px;        
+    }
+
+/*Button style*/
+
+
+
+#verticalFrameMain{
+background-color: rgb(255, 255, 255);
+}
+
+QScrollBar:vertical {
+    border: 2px solid #cccccc;  /* Viền ngoài màu xám */
+    background: #f0f0f0;        /* Màu nền thanh cuộn */
+    width: 16px;                /* Tăng chiều rộng */
+    border-radius: 5px;         /* Bo tròn toàn bộ thanh */
+}
+
+QScrollBar::handle:vertical {
+	background-color: rgb(56, 106, 236);
+    border-radius: 4px !important; 
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #0056b3;        /* Màu đậm hơn khi hover */
+}
+
+QScrollBar::add-line:vertical, 
+QScrollBar::sub-line:vertical {
+    background: none;
+    border: none;
+    width: 0px;                 /* Ẩn các nút tăng giảm */
+}
+
+QScrollBar::add-page:vertical, 
+QScrollBar::sub-page:vertical {
+    background: none;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1450</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#centralwidget{background-color: rgb(247, 247, 248);
+border: 2px}</string>
+   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1451</width>
+      <height>861</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_32">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
+     <item>
+      <widget class="QFrame" name="frNatBar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(57, 57, 57);</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_50">
+        <property name="geometry">
+         <rect>
+          <x>1370</x>
+          <y>0</y>
+          <width>55</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>C:/Users/kitter/.designer/backup/img/close.png</pixmap>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnClose">
+        <property name="geometry">
+         <rect>
+          <x>1410</x>
+          <y>0</y>
+          <width>31</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+background-color: rgba(255, 255, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>img/close.png</normaloff>img/close.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnMinimize">
+        <property name="geometry">
+         <rect>
+          <x>1360</x>
+          <y>0</y>
+          <width>41</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+background-color: rgba(255, 255, 255, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>img/minus.png</normaloff>img/minus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>33</width>
+          <height>33</height>
+         </size>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="mainLayout">
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QWidget" name="verticalLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>351</width>
+            <height>791</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="menuLayout">
+           <property name="spacing">
+            <number>5</number>
+           </property>
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="horizontalFrame_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">margin: 5px 0px</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_49">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="pixmap">
+                 <pixmap>C:/Users/kitter/.designer/backup/img/TikTok.png</pixmap>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_48">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>15</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(238, 29, 82, 255), stop:1 rgba(0, 238, 255, 255));</string>
+                </property>
+                <property name="text">
+                 <string>PATE CHO VÀNG</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::AutoText</enum>
+                </property>
+                <property name="scaledContents">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_47">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: rgb(150, 150, 150);
+margin: 10px 5px</string>
+             </property>
+             <property name="text">
+              <string>Nền tảng: </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnDouyin">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btnDouyin {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btnDouyin:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>Douyin</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/TikTok.png</normaloff>img/TikTok.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnYoutube">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btnYoutube {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btnYoutube:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>Youtube</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/Youtube.png</normaloff>img/Youtube.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnWeibo">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btnFacebook {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btnFacebook:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>Weibo</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/Weibo.png</normaloff>img/Weibo.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btInstagram">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btInstagram {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btInstagram:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>Instagram</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/Instagram.png</normaloff>img/Instagram.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnTwitter">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btnTwitter {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btnTwitter:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>X (Twitter)</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/Twitter.png</normaloff>img/Twitter.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSnapChat">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btnSnapChat {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btnSnapChat:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>Snap chat</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/Snapchat.png</normaloff>img/Snapchat.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnQQLive">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>70</height>
+              </size>
+             </property>
+             <property name="baseSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">#btnQQLive {
+background-color: rgb(247, 247, 248);
+border: none; 
+padding: 10px 15px;
+border-radius: 15px;
+text-align: left;
+            }
+            #btnQQLive:hover {
+background-color:  rgb(255, 255, 255);
+color: rgb(29, 29, 29);
+border-radius: 15px;
+padding: 20px 25px;
+border: none;
+color: black;
+            }</string>
+             </property>
+             <property name="text">
+              <string>QQ live</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>img/QQ.png</normaloff>img/QQ.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="bottomMargin">
+          <number>15</number>
+         </property>
+         <item>
+          <widget class="QScrollArea" name="layoutMain">
+           <property name="styleSheet">
+            <string notr="true">#scrollAreaMain {
+    background-color: white;      /* Màu nền */
+    border-radius: 3px;          /* Bo viền 10px */
+    border: 2px solid #cccccc;    /* Viền màu xám nhạt */
+    padding: 15px;           /* Khoảng cách bên trong */
+}
+
+#scrollAreaMain {
+    qproperty-windowOpacity: 1;   /* Đảm bảo không bị trong suốt */
+}
+
+#scrollAreaMain::hover {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);  /* Đổ bóng khi hover */
+}
+
+</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Plain</enum>
+           </property>
+           <property name="widgetResizable">
+            <bool>true</bool>
+           </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1024</width>
+              <height>1000</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+background-color: rgb(255, 255, 255);
+</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_26">
+             <property name="spacing">
+              <number>30</number>
+             </property>
+             <property name="leftMargin">
+              <number>30</number>
+             </property>
+             <property name="topMargin">
+              <number>30</number>
+             </property>
+             <property name="rightMargin">
+              <number>30</number>
+             </property>
+             <property name="bottomMargin">
+              <number>30</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="verticalFrameMain">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QFrame" name="frame">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="louMain">
+                   <property name="leftMargin">
+                    <number>35</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>35</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>35</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>35</number>
+                   </property>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout">
+                     <item>
+                      <widget class="QLabel" name="lbLogoSocial">
+                       <property name="font">
+                        <font>
+                         <pointsize>25</pointsize>
+                         <weight>75</weight>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(238, 29, 82, 255), stop:1 rgba(0, 238, 255, 255));</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="textFormat">
+                        <enum>Qt::AutoText</enum>
+                       </property>
+                       <property name="pixmap">
+                        <pixmap>img/DouyinChar.png</pixmap>
+                       </property>
+                       <property name="scaledContents">
+                        <bool>false</bool>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>13</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">margin: 15px 0px 0px 0px</string>
+                     </property>
+                     <property name="text">
+                      <string>Link kênh:</string>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_13">
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="txtUrl">
+                       <property name="placeholderText">
+                        <string>https://www.youtube.com/</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_17">
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="label_3">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Chất lượng video: </string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QComboBox" name="cbQuatityVideo">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QComboBox {
+                background-color: rgb(52, 101, 223);
+                border: 2px solid rgb(44, 85, 189);
+                border-radius: 5px;
+                padding: 5px;
+	color: rgb(255, 255, 255);
+            }
+            QComboBox::drop-down {
+                border: none;
+                background-color: lightblue;
+            }
+            QComboBox QAbstractItemView {
+                background-color: white;
+                selection-background-color: lightblue;
+            }</string>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>bestvideo+bestaudio</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>bestvideo</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>bestaudio</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>worstvideo</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>worstaudio</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_4">
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_5">
+                       <property name="topMargin">
+                        <number>10</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>10</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_2">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                           <weight>75</weight>
+                           <bold>true</bold>
+                          </font>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">margin: 15px 0px 0px 0px</string>
+                         </property>
+                         <property name="text">
+                          <string>Lựa chọn cách tải video:</string>
+                         </property>
+                         <property name="scaledContents">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignLeft">
+                        <widget class="QWidget" name="widget" native="true">
+                         <layout class="QHBoxLayout" name="selectVideoH">
+                          <item>
+                           <widget class="QRadioButton" name="rdDownloadFromLink">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Tải video theo Link</string>
+                            </property>
+                            <property name="checked">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QRadioButton" name="rdFullChannel">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Tải Full kênh</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QRadioButton" name="rdFromKey">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Tải theo từ khóa</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QRadioButton" name="rdError">
+                            <property name="enabled">
+                             <bool>false</bool>
+                            </property>
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Error</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="layoutOrder" native="true">
+                       <layout class="QVBoxLayout" name="aaa">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>10</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>10</number>
+                        </property>
+                        <item>
+                         <widget class="QWidget" name="layouYoutubeType" native="true">
+                          <layout class="QVBoxLayout" name="verticalLayout_6">
+                           <property name="topMargin">
+                            <number>1</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>10</number>
+                           </property>
+                           <item>
+                            <widget class="QLabel" name="label_7">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>10</pointsize>
+                               <weight>75</weight>
+                               <bold>true</bold>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">margin: 5px 0px 0px 0px</string>
+                             </property>
+                             <property name="text">
+                              <string>Shorr or video:</string>
+                             </property>
+                             <property name="scaledContents">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <layout class="QHBoxLayout" name="horizontalLayout_4"/>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="rdShortYoutube">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Short</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="rdVideoYoutube">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Video</string>
+                             </property>
+                             <property name="checked">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_6">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">margin: 15px 0px 0px 0px</string>
+                          </property>
+                          <property name="text">
+                           <string>Lựa chọn tải về sắp xếp theo thứ tự</string>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                          <property name="margin">
+                           <number>1</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item alignment="Qt::AlignLeft">
+                         <widget class="QWidget" name="widget" native="true">
+                          <layout class="QHBoxLayout" name="selectSortLayout1">
+                           <item>
+                            <widget class="QRadioButton" name="rdDownloadNewVideo">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Tải video mới nhất</string>
+                             </property>
+                             <property name="checked">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="edDownloadTrending">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Tải video phổ biến nhất</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="rdDownloadOld">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Tải video cũ nhất</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item alignment="Qt::AlignLeft">
+                         <widget class="QWidget" name="widget" native="true">
+                          <layout class="QHBoxLayout" name="selectSortLayout2">
+                           <item>
+                            <widget class="QRadioButton" name="rdDownloadDate">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Theo ngày</string>
+                             </property>
+                             <property name="checked">
+                              <bool>true</bool>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="rdDownloadWeek">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Theo tuần</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QRadioButton" name="rdCustomTime">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Nhập thời gian cụ thể</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="txtFromDate">
+                             <property name="enabled">
+                              <bool>false</bool>
+                             </property>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Chọn ngày bắt đầu</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="txtToDate">
+                             <property name="enabled">
+                              <bool>false</bool>
+                             </property>
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Chọn ngày kết thúc</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="lauoutQuantity" native="true">
+                       <layout class="QVBoxLayout" name="cccc">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>10</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>10</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="btn">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">margin: 15px 0px 0px 0px</string>
+                          </property>
+                          <property name="text">
+                           <string>Số lượng video muốn tải:</string>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>false</bool>
+                          </property>
+                          <property name="margin">
+                           <number>0</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item alignment="Qt::AlignLeft">
+                         <widget class="QWidget" name="widget" native="true">
+                          <layout class="QHBoxLayout" name="numberDownloadLayout">
+                           <property name="leftMargin">
+                            <number>0</number>
+                           </property>
+                           <item>
+                            <widget class="QCheckBox" name="rdDownloadAllVideo">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="minimumSize">
+                              <size>
+                               <width>300</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>300</width>
+                               <height>16777215</height>
+                              </size>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>-1</pointsize>
+                              </font>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QCheckBox {
+                font-size: 15px; /* Kích thước chữ */
+                spacing: 10px; /* Khoảng cách giữa checkbox và chữ */
+margin: 0px 0px 0px 20px
+            }
+            QCheckBox::indicator {
+                width: 15px; /* Kích thước checkbox */
+                height: 15px;
+                border: 1px solid #555;
+                border-radius: 3px;
+                background: white;
+            }
+            QCheckBox::indicator:hover {
+                border: 2px solid #0078D7;
+            }
+            QCheckBox::indicator:checked {
+                background: #0078D7;
+                border: 2px solid #0078D7;
+            }</string>
+                             </property>
+                             <property name="text">
+                              <string>Tải toàn bộ</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="lbQuantityDownload">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>9</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>Nhập số lượng muốn tải</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLineEdit" name="txtQuatityDownload">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="placeholderText">
+                              <string>Nhập số lượng</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QWidget" name="widget" native="true">
+                       <layout class="QVBoxLayout" name="verticalLayout_9">
+                        <property name="topMargin">
+                         <number>1</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>10</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_4">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">margin: 15px 0px 0px 0px</string>
+                          </property>
+                          <property name="text">
+                           <string>Lựa chọn Forder lưu video:</string>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <layout class="QHBoxLayout" name="horizontalLayout_3">
+                          <item>
+                           <widget class="QLineEdit" name="txtFolderSaveVideo">
+                            <property name="placeholderText">
+                             <string>D:\Launcher</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btnSelectFolder">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>10</pointsize>
+                              <weight>75</weight>
+                              <bold>true</bold>
+                             </font>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton {
+    background-color: #347EFF; /* Màu xanh */
+    color: white;              /* Chữ màu trắng */      
+    font-weight: bold;         /* In đậm */
+    border-radius: 3px;        /* Bo góc */
+    padding: 6px 12px;         /* Khoảng cách lề */
+    border: none;              /* Không viền */
+ padding: 10px 25px 10px 25px; 
+}
+
+/* Khi hover */
+QPushButton:hover {
+    background-color: #286BE6; /* Màu xanh đậm hơn */
+}
+
+/* Khi nhấn */
+QPushButton:pressed {
+    background-color: #1F58C2; /* Màu xanh tối hơn khi nhấn */
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Select</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignRight">
+          <widget class="QFrame" name="frame_5">
+           <property name="styleSheet">
+            <string notr="true">margin: 5px 0px 0px 0px</string>
+           </property>
+           <layout class="QHBoxLayout" name="runLayout">
+            <property name="spacing">
+             <number>7</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="btnRun">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background-color: rgb(43, 191, 91); /* Màu xanh */
+    color: white;              /* Chữ màu trắng */      
+    font-weight: bold;         /* In đậm */
+    border-radius: 3px;        /* Bo góc */
+    padding: 6px 12px;         /* Khoảng cách lề */
+    border: none;              /* Không viền */
+ padding: 10px 25px 10px 25px; 
+}
+
+/* Khi hover */
+QPushButton:hover {
+    background-color: rgb(35, 158, 74); /* Màu xanh đậm hơn */
+}
+
+/* Khi nhấn */
+QPushButton:pressed {
+    background-color: rgb(21, 95, 44); /* Màu xanh tối hơn khi nhấn */
+}</string>
+              </property>
+              <property name="text">
+               <string>Run</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>2576</y>
+      <width>970</width>
+      <height>268</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_51">
+     <property name="bottomMargin">
+      <number>15</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #347EFF; /* Màu xanh */
+    color: white;              /* Chữ màu trắng */      
+    font-weight: bold;         /* In đậm */
+    border-radius: 3px;        /* Bo góc */
+    padding: 6px 12px;         /* Khoảng cách lề */
+    border: none;              /* Không viền */
+ padding: 10px 25px 10px 25px; 
+}
+
+/* Khi hover */
+QPushButton:hover {
+    background-color: #286BE6; /* Màu xanh đậm hơn */
+}
+
+/* Khi nhấn */
+QPushButton:pressed {
+    background-color: #1F58C2; /* Màu xanh tối hơn khi nhấn */
+}</string>
+       </property>
+       <property name="text">
+        <string>Chỉnh sửa âm thanh</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_100">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Hệ màu cơ bản:</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLineEdit" name="txtCutStart_19">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_101">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Main Volum</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtCutStart_20">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_102">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Audio Tone</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_103">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Hệ màu cơ bản:</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QSlider" name="horizontalSlider_3">
+         <property name="styleSheet">
+          <string notr="true">QSlider{
+margin: 0px 50px 0px 0px
+}
+
+QSlider::groove:horizontal {
+                border: 1px solid rgb(43, 105, 211);
+                height: 3px;
+                background: rgb(52, 126, 255);
+                margin: 2px 0;
+            }
+            QSlider::handle:horizontal {
+                background: rgb(52, 126, 255);
+                border: 1px solid rgb(43, 105, 211);
+                width: 14px;
+                height: 20px;
+                margin: -6px 0;
+                border-radius: 7px;
+            }
+            QSlider::handle:horizontal:hover {
+                background: rgb(26, 63, 127);
+            }</string>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtCutStart_21">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_104">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">margin: 0px 100px 0px 0px</string>
+         </property>
+         <property name="text">
+          <string>Red</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_105">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Hệ màu nâng cao:</string>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <widget class="QSlider" name="horizontalSlider_4">
+         <property name="styleSheet">
+          <string notr="true">QSlider{
+margin: 0px 50px 0px 0px
+}
+
+QSlider::groove:horizontal {
+                border: 1px solid rgb(43, 105, 211);
+                height: 3px;
+                background: rgb(52, 126, 255);
+                margin: 2px 0;
+            }
+            QSlider::handle:horizontal {
+                background: rgb(52, 126, 255);
+                border: 1px solid rgb(43, 105, 211);
+                width: 14px;
+                height: 20px;
+                margin: -6px 0;
+                border-radius: 7px;
+            }
+            QSlider::handle:horizontal:hover {
+                background: rgb(26, 63, 127);
+            }</string>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtCutStart_22">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_106">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">margin: 0px 100px 0px 0px</string>
+         </property>
+         <property name="text">
+          <string>Red</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -771,9 +771,9 @@ color: black;
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-1297</y>
-              <width>1036</width>
-              <height>3140</height>
+              <y>0</y>
+              <width>1054</width>
+              <height>3309</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -914,51 +914,6 @@ background-color: rgb(255, 255, 255);
                        <property name="placeholderText">
                         <string>https://www.youtube.com/</string>
                        </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QComboBox" name="comboBox">
-                       <property name="styleSheet">
-                        <string notr="true"> QComboBox {
-                background-color: #2E7D32; /* Màu xanh lá cây đậm */
-                color: white; /* Chữ màu trắng */
-                border: 2px solid #1B5E20; /* Viền xanh lá đậm */
-                border-radius: 8px; /* Bo tròn góc */
-                padding: 6px;
-                font-size: 14px;
-            }
-            QComboBox:hover {
-                background-color: #388E3C; /* Màu xanh hover */
-            }
-            QComboBox::drop-down {
-                border: 0px;
-            }
-            QComboBox::down-arrow {
-                image: &quot;svg://&lt;svg width='12' height='12' viewBox='0 0 24 24'&gt;&lt;path fill='white' d='M7 10l5 5 5-5z'/&gt;&lt;/svg&gt;&quot;;
-                width: 14px;
-                height: 14px;
-            }
-            QComboBox QAbstractItemView {
-                background: #2E7D32;
-                border: 1px solid #1B5E20;
-                selection-background-color: #66BB6A; /* Màu xanh lá sáng khi chọn */
-                selection-color: white;
-                padding: 4px;
-            }</string>
-                       </property>
-                       <property name="currentText">
-                        <string>Mơi</string>
-                       </property>
-                       <item>
-                        <property name="text">
-                         <string>Mơi</string>
-                        </property>
-                       </item>
-                       <item>
-                        <property name="text">
-                         <string>mơiisiis</string>
-                        </property>
-                       </item>
                       </widget>
                      </item>
                     </layout>

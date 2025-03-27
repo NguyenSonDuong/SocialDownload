@@ -36,7 +36,7 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,  # Dùng UPX để nén file .exe
-    console=True,  # Không hiển thị cửa sổ terminal khi chạy
+    console=False,  # Không hiển thị cửa sổ terminal khi chạy
 )
 
 # Tạo file spec hoàn chỉnh
